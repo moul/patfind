@@ -3,16 +3,23 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
+
+	"github.com/olekukonko/tablewriter"
 )
 
 func main() {
-	numbers := []Number{}
+	data := [][]string{}
+
 	for _, arg := range os.Args[1:] {
-		numbers = append(numbers, New(arg))
+		number := New(arg)
+		score, comments := number.Score()
+		data = append(data, []string{number.String(), fmt.Sprintf("%5f", score), strings.Join(comments, "\n")})
 	}
 
-	for _, number := range numbers {
-		score, comments := number.Score()
-		fmt.Println(number, score, comments)
-	}
+	table := tablewriter.NewWriter(os.Stdout)
+	table.SetHeader([]string{"Number", "Score", "Comments"})
+	table.SetBorder(false)
+	table.AppendBulk(data)
+	table.Render()
 }
