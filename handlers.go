@@ -46,6 +46,9 @@ func FamousPatternsScore(n string) (score float64, comment string) {
 
 func UniqueSymbolsScore(n string) (score float64, comment string) {
 	uniq := StringUniqueSymbols(n)
+	if len(uniq) > len(n)/2 {
+		return
+	}
 	comment = fmt.Sprintf("%d unique symbols", len(uniq))
 	uniqueness := float64(len(n)) / (float64(len(uniq)) / (float64(len(n)))) / 100 // average percentage of presence per symbol
 	// FIXME: use an exponential approach over the uniqueness
