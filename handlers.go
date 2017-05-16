@@ -8,9 +8,11 @@ type Handler func(string) (float64, string)
 
 var EnabledHandlers = []Handler{
 	UniqueSymbols,
-	// RepetitivePatterns
+	RepetitivePatterns,
 	// FIXME: check for famous patterns, 4242, 666
 	// FIXME: check for suites
+	// FIXME: longest ending similar numbers (/000$/)
+	// FIXME: finger-typing-distance
 }
 
 func UniqueSymbols(n string) (score float64, comment string) {
@@ -23,10 +25,34 @@ func UniqueSymbols(n string) (score float64, comment string) {
 }
 
 func RepetitivePatterns(n string) (score float64, comment string) {
-	fmt.Println("")
-	fmt.Println(2, RightSplitByLength(string(n), 2))
-	fmt.Println(3, RightSplitByLength(string(n), 3))
-	fmt.Println(4, RightSplitByLength(string(n), 4))
-	fmt.Println(5, RightSplitByLength(string(n), 5))
+	var (
+		bestMatchedLen int
+	)
+
+	// FIXME: begin at i:=1 ?
+	for i := 2; i < len(n)/2; i++ {
+		groups := RightSplitByLength(string(n), i)
+		uniq := map[string]int{}
+		for _, group := range groups {
+			if _, found := uniq[group]; !found {
+				uniq[group] = 0
+			}
+			uniq[group]++
+		}
+
+		matchedLen := 0
+		for idx, val := range uniq {
+			if val == 1 {
+				delete(uniq, idx)
+			} else {
+				matchedLen += i * val
+			}
+		}
+		if matchedLen > bestMatchedLen {
+			bestMatchedLen = matchedLen
+		}
+	}
+
+	score = float64(bestMatchedLen) / float64(len(n))
 	return
 }
