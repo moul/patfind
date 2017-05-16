@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"os"
 	"strings"
 
@@ -14,7 +15,9 @@ func main() {
 	for _, arg := range os.Args[1:] {
 		number := New(arg)
 		score, comments := number.Score()
-		data = append(data, []string{number.String(), fmt.Sprintf("%5f", score), strings.Join(comments, ";\n")})
+		shift := math.Pow(10, float64(5))
+		roundedScore := math.Floor(score*shift+.5) / shift
+		data = append(data, []string{number.String(), fmt.Sprintf("%v", roundedScore), strings.Join(comments, ";\n")})
 	}
 
 	table := tablewriter.NewWriter(os.Stdout)

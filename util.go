@@ -1,6 +1,8 @@
 package main
 
-import "sort"
+import (
+	"sort"
+)
 
 func LeftSplitByLength(s string, length int) []string {
 	var output []string
