@@ -36,23 +36,23 @@ func TestRepetitivePatterns(t *testing.T) {
 
 		score, comment = RepetitivePatterns("0000000000")
 		So(score, ShouldEqual, float64(1))
-		So(comment, ShouldEqual, "")
+		So(comment, ShouldEqual, "2 repetitions of 5 symbols")
 
 		score, comment = RepetitivePatterns("0707070707")
 		So(score, ShouldEqual, float64(1))
-		So(comment, ShouldEqual, "")
+		So(comment, ShouldEqual, "5 repetitions of 2 symbols")
 
 		score, comment = RepetitivePatterns("0682824242")
 		So(score, ShouldEqual, 0.8)
-		So(comment, ShouldEqual, "")
+		So(comment, ShouldEqual, "4 repetitions of 2 symbols")
 
 		score, comment = RepetitivePatterns("0612341234")
 		So(score, ShouldEqual, 0.8)
-		So(comment, ShouldEqual, "")
+		So(comment, ShouldEqual, "2 repetitions of 4 symbols")
 
 		score, comment = RepetitivePatterns("0612344242")
 		So(score, ShouldEqual, 0.4)
-		So(comment, ShouldEqual, "")
+		So(comment, ShouldEqual, "2 repetitions of 2 symbols")
 
 		score, comment = RepetitivePatterns("0612345666")
 		So(score, ShouldEqual, 0)

@@ -13,6 +13,7 @@ var EnabledHandlers = []Handler{
 	// FIXME: check for suites
 	// FIXME: longest ending similar numbers (/000$/)
 	// FIXME: finger-typing-distance
+	// FIXME: longest repetitive symbol
 }
 
 func UniqueSymbols(n string) (score float64, comment string) {
@@ -27,10 +28,10 @@ func UniqueSymbols(n string) (score float64, comment string) {
 func RepetitivePatterns(n string) (score float64, comment string) {
 	var (
 		bestMatchedLen int
+		// FIXME: count the number of working "i"
 	)
 
-	// FIXME: begin at i:=1 ?
-	for i := 2; i < len(n)/2; i++ {
+	for i := len(n) / 2; i >= 2; i-- {
 		groups := RightSplitByLength(string(n), i)
 		uniq := map[string]int{}
 		for _, group := range groups {
@@ -41,15 +42,18 @@ func RepetitivePatterns(n string) (score float64, comment string) {
 		}
 
 		matchedLen := 0
+		sumMatches := 0
 		for idx, val := range uniq {
 			if val == 1 {
 				delete(uniq, idx)
 			} else {
 				matchedLen += i * val
+				sumMatches += val
 			}
 		}
 		if matchedLen > bestMatchedLen {
 			bestMatchedLen = matchedLen
+			comment = fmt.Sprintf("%d repetitions of %d symbols", sumMatches, i)
 		}
 	}
 
