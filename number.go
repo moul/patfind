@@ -17,7 +17,9 @@ func (n Number) Score() (average float64, comments []string) {
 	for _, handler := range EnabledHandlers {
 		score, comment := handler(string(n))
 		totalScores += score
-		comments = append(comments, comment)
+		if comment != "" {
+			comments = append(comments, comment)
+		}
 	}
 
 	if totalScores != 0 {
