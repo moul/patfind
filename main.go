@@ -12,6 +12,7 @@ func main() {
 	}
 
 	for _, number := range numbers {
-		fmt.Println(number, number.Score())
+		score, comments := number.Score()
+		fmt.Println(number, score, comments)
 	}
 }
