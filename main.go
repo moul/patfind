@@ -14,8 +14,6 @@ import (
 )
 
 func main() {
-	data := [][]string{}
-
 	sequences := []score.Sequence{}
 
 	if len(os.Args) < 2 { // stdin
@@ -34,6 +32,7 @@ func main() {
 		}
 	}
 
+	data := [][]string{}
 	for _, sequence := range sequences {
 		score, comments := sequence.Score()
 		shift := math.Pow(10, float64(5))

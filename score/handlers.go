@@ -21,6 +21,10 @@ var FamousPatterns = []string{
 	"42",
 	"1337",
 	"8173",
+	"cool",
+	"manfred",
+	"moul",
+	"mtouron",
 }
 
 func FamousPatternsScore(n string) (score float64, comment string) {
