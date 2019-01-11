@@ -28,6 +28,7 @@ var FamousPatterns = []string{
 }
 
 func FamousPatternsScore(n string) (score float64, comment string) {
+	n = strings.ToLower(n)
 	matchedPatterns := []string{}
 	for _, pattern := range FamousPatterns {
 		if strings.Contains(n, pattern) {
