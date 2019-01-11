@@ -1,4 +1,4 @@
-package main
+package score // import "moul.io/patfind/score"
 
 import (
 	"fmt"
