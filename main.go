@@ -33,9 +33,9 @@ func main() {
 	}
 
 	data := [][]string{}
+	shift := math.Pow(10, float64(5))
 	for _, sequence := range sequences {
 		score, comments := sequence.Score()
-		shift := math.Pow(10, float64(5))
 		roundedScore := math.Floor(score*shift+.5) / shift
 		data = append(data, []string{sequence.String(), fmt.Sprintf("%v", roundedScore), strings.Join(comments, ";\n")})
 	}
