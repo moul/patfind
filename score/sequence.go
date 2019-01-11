@@ -1,16 +1,16 @@
 package score // import "moul.io/patfind/score"
 
-type Number string
+type Sequence string
 
-func New(number string) Number {
-	return Number(number)
+func New(sequence string) Sequence {
+	return Sequence(sequence)
 }
 
-func (n Number) String() string {
+func (n Sequence) String() string {
 	return string(n)
 }
 
-func (n Number) Score() (average float64, comments []string) {
+func (n Sequence) Score() (average float64, comments []string) {
 	comments = []string{}
 	var totalScores float64
 

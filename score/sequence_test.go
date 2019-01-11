@@ -6,8 +6,8 @@ import (
 	. "github.com/smartystreets/goconvey/convey"
 )
 
-func TestNumber_Score(t *testing.T) {
-	Convey("Number.Score", t, func() {
+func TestSequence_Score(t *testing.T) {
+	Convey("Sequence.Score", t, func() {
 		/*
 			So(New("0123456789").Score(), ShouldEqual, 42)
 			So(New("0958274251").Score(), ShouldEqual, 42)
